@@ -28,3 +28,11 @@ resource "aws_ssm_parameter" "sqs_name" {
   type        = "SecureString"
   value       = module.sqs.queue_name
 }
+
+# saving created sqs url into ssm
+resource "aws_ssm_parameter" "sqs_url_path" {
+  name        = "/${var.tag_env}/sqs/url"
+  description = "The URL for the created Amazon SQS queue"
+  type        = "SecureString"
+  value       = module.sqs.queue_id
+}
