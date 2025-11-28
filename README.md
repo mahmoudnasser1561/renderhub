@@ -7,4 +7,4 @@ The application implements a fully serverless and event-driven architecture leve
 <img width="1647" height="628" alt="arch" src="https://github.com/user-attachments/assets/f766e34a-89ad-4870-9859-63f02c2a3f11" />
 
 ## Terraform Dependency Graph
-<img width="1081" height="721" alt="AARCH drawio" src="https://github.com/user-attachments/assets/61342292-35c3-4ec1-a410-f1485bda7202" />
+<img width="1081" height="721" alt="12 drawio" src="https://github.com/user-attachments/assets/ea3f9a7f-4cf1-482a-9ac1-8c3bd881a3d0" />
