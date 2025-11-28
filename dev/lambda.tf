@@ -67,3 +67,11 @@ module "iam_policy_for_lambda_execution" {
 }
 EOF
 }
+
+# saving iam role arn in ssm
+resource "aws_ssm_parameter" "save_lambda_iam_role_arn_to_ssm" {
+  name        = "/${var.tag_env}/lambda/iam/role/arn"
+  description = "The ARN of the IAM Role for Lambda execution"
+  type        = "SecureString"
+  value       = module.iam_assumable_role_for_lambda_execution.iam_role_arn
+}
