@@ -31,3 +31,49 @@ module "rds" {
     Name = "${var.tag_env}-rds"
   }
 }
+
+resource "random_password" "rds_db_name" {
+  length  = 7
+  special = false
+  numeric = false
+}
+
+resource "random_password" "rds_password" {
+  length           = 16
+  special          = true
+  override_special = "!#"
+}
+
+resource "random_password" "rds_admin_username" {
+  length  = 7
+  special = false
+  numeric = false
+}
+
+resource "aws_ssm_parameter" "save_rds_db_name_to_ssm" {
+  name        = "/${var.tag_env}/rds/db_name"
+  description = "RDS DB name"
+  type        = "SecureString"
+  value       = random_password.rds_db_name.result
+}
+
+resource "aws_ssm_parameter" "save_rds_endpoint_to_ssm" {
+  name        = "/${var.tag_env}/rds/endpoint"
+  description = "RDS endpoint"
+  type        = "SecureString"
+  value       = module.rds.endpoint
+}
+
+resource "aws_ssm_parameter" "save_rds_password_to_ssm" {
+  name        = "/${var.tag_env}/rds/password"
+  description = "RDS password"
+  type        = "SecureString"
+  value       = random_password.rds_password.result
+}
+
+resource "aws_ssm_parameter" "save_rds_admin_username_to_ssm" {
+  name        = "/${var.tag_env}/rds/username"
+  description = "RDS username"
+  type        = "SecureString"
+  value       = random_password.rds_admin_username.result
+}
