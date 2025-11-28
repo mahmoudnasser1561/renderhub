@@ -16,6 +16,7 @@ module "rds" {
   db_port              = 3306
   vpc_id               = module.vpc.vpc_id
   subnets              = module.vpc.database_subnets
+  security_groups      = [module.eks.node_security_group_id]
   enable_http_endpoint = true
 
   scaling_configuration = [
